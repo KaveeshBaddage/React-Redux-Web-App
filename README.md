@@ -16,3 +16,10 @@ You’ll need to have Node >= 6 on your machine.
 #### * Run web application  <br />
     npm start
 
+#### * Delete Unwanted files and update files <br />
+    modified:   src/App.js
+    modified:   src/index.js
+    deleted:    src/App.test.js
+    deleted:    src/index.css
+    deleted:    src/logo.svg
+    deleted:    src/App.css
