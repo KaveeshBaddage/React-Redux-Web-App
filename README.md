@@ -29,10 +29,31 @@ You’ll need to have Node >= 6 on your machine.
  React Router is a collection of navigational components that compose declaratively with web application.React Router has been broken into three packages: 
     react-router, 
     react-router-dom,
-    react-router-native.<br>
+    react-router-native. <br />
   There are `<BrowserRouter>` and `<HashRouter>` components in React-router-dom. The <BrowserRouter> should be used when you have to handle dynamic requests (to respond to any possible URI), while the `<HashRouter>` should be used for static websites (can only respond to requests for files that it knows about). <br>
  Usually it is preferable to use a `<BrowserRouter>`, but if your website will be hosted on a server  and that only serves static files, then `<HashRouter>` is a good solution.
 
 #### * Add  react-router-dom package
      react-router-dom --save
+
+### Rendering a Component
+
+ Other than DOM tags(ex-`<div>`) we can also use user-defined components to view contents. <br/>
+ When React sees an element representing a user-defined component, it passes JSX attributes to this component as a single object. We call this object “props”.
+ We can use user-defined component inside render() function by using that component name inside '</>'<br/>
+    ex - 
+    import Navbar from './../modules/navbar'; //user defined component
+    class Dashboard extends Component {
+        render() {
+            return(
+                <React.Fragment>
+                    <Navbar/>
+                    Dashboard
+                </React.Fragment>
+            )
+        }
+    }
+
+**important -  We can only return one root component. So we have to to wrap all the components in to one root component. To do that we use `</React.Fragment>`**
+
 
