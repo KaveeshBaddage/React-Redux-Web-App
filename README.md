@@ -5,14 +5,14 @@ Create React App is the best way to start building a new React single page appli
 You’ll need to have Node >= 6 on your machine.
 
 #### * Starter kit for development of react modules/components. <br />
-    ```npm install -g create-react-app```
+    npm install -g create-react-app
 
 #### * Create react application named react-redux-web-app  using starter kit.<br />
-    `create-react-app react-redux-web-app`
+    create-react-app react-redux-web-app
 
 #### * Go inside to the project directory <br />
-    `cd react-redux-web-app`
+    cd react-redux-web-app
 
 #### * Run web application  <br />
-    `npm start`
+    npm start
 
