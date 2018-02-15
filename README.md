@@ -33,7 +33,7 @@ You’ll need to have Node >= 6 on your machine.
   There are `<BrowserRouter>` and `<HashRouter>` components in React-router-dom. The <BrowserRouter> should be used when you have to handle dynamic requests (to respond to any possible URI), while the `<HashRouter>` should be used for static websites (can only respond to requests for files that it knows about). <br>
  Usually it is preferable to use a `<BrowserRouter>`, but if your website will be hosted on a server  and that only serves static files, then `<HashRouter>` is a good solution.
 
-#### * Add  react-router-dom package
+#### * Add  react-router-dom package and add in to the package.json (--save tag will add that package in to the package.json)
      react-router-dom --save
 
 ### Rendering a Component
@@ -57,3 +57,16 @@ You’ll need to have Node >= 6 on your machine.
 **important -  We can only return one root component. So we have to to wrap all the components in to one root component. To do that we use `</React.Fragment>`**
 
 
+### * Semantic UI
+
+Semantic is a development framework that helps create beautiful, responsive layouts using human-friendly HTML.<br/>
+
+#### * Add Semantic UI package in to project and add in to the package.json
+    npm install semantic-ui-react --save
+
+###### Grid in Semantic UI
+Grids divide horizontal space into indivisible units called "columns". All columns in a grid must specify their width as proportion of the total available row width.All grid systems chooses an arbitrary column count to allow per row. Semantic's default theme uses 16 columns.<br/>
+
+####### Rows in Semantic UI
+Rows are groups of columns which are aligned horizontally.
+    For more details - https://semantic-ui.com/collections/grid.html
