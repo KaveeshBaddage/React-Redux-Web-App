@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from './../modules/navbar';
 import Sidebar from './../modules/sidebar';
+import MainPage from './MainPage';
 
 class Dashboard extends Component {
     render() {
@@ -24,7 +25,7 @@ class Dashboard extends Component {
                     <div class="row" style={{ height: 800 }}>
                         <div class="three wide column"><Sidebar/></div>
                         <div class="thirteen wide column"> 
-                            Dashboard content
+                            <MainPage/>
                         </div>
                     </div>
                 </div>
