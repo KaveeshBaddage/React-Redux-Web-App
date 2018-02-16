@@ -61,12 +61,12 @@ You’ll need to have Node >= 6 on your machine.
 
 Semantic is a development framework that helps create beautiful, responsive layouts using human-friendly HTML.<br/>
 
-#### * Add Semantic UI package in to project and add in to the package.json
+##### * Add Semantic UI package in to project and add in to the package.json
     npm install semantic-ui-react --save
 
-###### Grid in Semantic UI
+##### Grid in Semantic UI
 Grids divide horizontal space into indivisible units called "columns". All columns in a grid must specify their width as proportion of the total available row width.All grid systems chooses an arbitrary column count to allow per row. Semantic's default theme uses 16 columns.<br/>
 
-####### Rows in Semantic UI
+##### Rows in Semantic UI
 Rows are groups of columns which are aligned horizontally.
     For more details - https://semantic-ui.com/collections/grid.html
