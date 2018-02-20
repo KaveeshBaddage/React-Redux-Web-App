@@ -60,7 +60,7 @@ When the route’s path matches, a match object with the following properties wi
     isExact —path === pathname
     params — an object containing values from the pathname that were captured by 'path-to-regexp'
 
-####Creating Routes
+#### Creating Routes
 
 <Route>s can be created anywhere inside of the router, but often it makes sense to render them in the same place. You can use the<Switch> component to group <Route>s. The <Switch> will iterate over its children elements (the routes) and only render the first one that matches the current pathname.In order to match a path in our application, all that we have to do is create a <Route> element with the path prop we want to match. </br>
 
@@ -85,7 +85,7 @@ In the following I have used those three ways to route
             ? <Page {...props}/>
             : <EmptyPage {...props}/>
         )}/>
-        
+
 ### Rendering a Component
 
  Other than DOM tags(ex-`<div>`) we can also use user-defined components to view contents. <br/>
