@@ -121,6 +121,32 @@ Grids divide horizontal space into indivisible units called "columns". All colum
 Rows are groups of columns which are aligned horizontally.
     For more details - https://semantic-ui.com/collections/grid.html <br/>
 
+### * Redux-form
+
+Redux form is the best way to manage form state in Redux.
+
+##### * Add Redux-form package in to project and add in to the package.json
+    npm install redux-form --save
 
 
+## Redux
+
+Redux is a predictable state container for JavaScript apps.<br/>
+
+Redux can be described in three fundamental principles:<br/>
+-The state of the whole application is stored in an object tree within a single store.
+-The only way to change the state is to emit an action, an object describing what happened.
+-To specify how the state tree is transformed by actions, you write pure reducers.
+
+more details - https://redux.js.org/  <br/>
+
+##### * Add Redux package in to project and add in to the package.json
+    npm install react-redux --save
+
+### Redux-Logic
+
+REdux-Logic is a middleware. Middleware is the suggested way to extend Redux with custom functionality. The most common use case for middleware is to support asynchronous actions without much boilerplate code or a dependency. We can use middleware to handle business logic. In some apps this might mean validation, verification, authorization. It might mean denying certain invalid attempts to change state or prevent illegal operations.Business logic governs the user’s UI and helping them to understand actions that are appropriate at any given time.
+
+##### * Add Redux-logic package in to project and add in to the package.json
+    npm install redux-logic --save
 
