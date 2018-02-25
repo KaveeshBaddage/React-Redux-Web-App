@@ -23,7 +23,10 @@ class Navbar extends React.Component {
                             <input placeholder="Search..." />
                         </div>
                     </div>
-                    <a className="item">Dashboard</a><a className="item">Settings</a><a className="item">Profile</a><a className="item">Help</a>
+                    <a className="item">Dashboard</a>
+                    <a className="item">Settings</a>
+                    <a className="item">Profile</a>
+                    <a className="item"  href="#/logout">Logout</a>
                 </div>
             </div>
         );
