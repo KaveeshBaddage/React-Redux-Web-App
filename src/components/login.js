@@ -35,19 +35,19 @@ class Login extends Component {
         this.clearPassword()
     }
 
-    // componentDidUpdate() {
-    //     if (this.props.isAuthenticated) {
-    //         console.log("Redirect to dashboard");
-    //         this.props.history.push('/')
-    //     }
-    // }
+    componentDidUpdate() {
+        if (this.props.isAuthenticated) {
+            console.log("Redirect to dashboard");
+            this.props.history.push('/')
+        }
+    }
 
-    // componentDidMount() {
-    //     if (this.props.isAuthenticated) {
-    //         console.log("Redirect to dashboard");
-    //         this.props.history.push('/')
-    //     }
-    // }
+    componentDidMount() {
+        if (this.props.isAuthenticated) {
+            console.log("Redirect to dashboard");
+            this.props.history.push('/')
+        }
+    }
 
 
 
