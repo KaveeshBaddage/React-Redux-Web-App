@@ -153,7 +153,7 @@ Here I used redux-action.
 
 ##### * Add redux-actions package in to project
 
- npm install --save redux-actions
+    npm install --save redux-actions
 
 ### Redux Reducers
 
@@ -170,7 +170,7 @@ we defined the actions that represent the facts about “what happened” and th
 
 - Allows access to state via getState()
 
-- Allows state to be updated via dispatch(action)
+- Allows state to be updated via dispatch(action). <br/>
     I used redux-action package. Because of that we can update state using  handleActions(). `handleAction(type, reducer, defaultState)`
 
 - Registers listeners via subscribe(listener)
