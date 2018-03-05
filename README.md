@@ -106,29 +106,6 @@ In the following I have used those three ways to route
 
 **important -  We can only return one root component. So we have to to wrap all the components in to one root component. To do that we use `</React.Fragment>`**
 
-
-### * Semantic UI
-
-Semantic is a development framework that helps create beautiful, responsive layouts using human-friendly HTML.<br/>
-
-##### * Add Semantic UI package in to project and add in to the package.json
-    npm install semantic-ui-react --save
-
-##### Grid in Semantic UI
-Grids divide horizontal space into indivisible units called "columns". All columns in a grid must specify their width as proportion of the total available row width.All grid systems chooses an arbitrary column count to allow per row. Semantic's default theme uses 16 columns.<br/>
-
-##### Rows in Semantic UI
-Rows are groups of columns which are aligned horizontally.
-    For more details - https://semantic-ui.com/collections/grid.html <br/>
-
-### * Redux-form
-
-Redux form is the best way to manage form state in Redux.
-
-##### * Add Redux-form package in to project and add in to the package.json
-    npm install redux-form --save
-
-
 ## Redux
 
 Redux is a predictable state container for JavaScript apps.<br/>
@@ -150,3 +127,101 @@ REdux-Logic is a middleware. Middleware is the suggested way to extend Redux wit
 ##### * Add Redux-logic package in to project and add in to the package.json
     npm install redux-logic --save
 
+###### Add middleware and store in to project
+
+    // Create redux-logic middleware
+    const logicMiddleware = createLogicMiddleware(services, {});
+
+
+    // Middlewares: applyMiddleware() tells createStore() how to handle middleware
+    const middleware = applyMiddleware(logicMiddleware)
+
+    // Create enhancer and add REDUX_DEVTOOLS_EXTENSION
+    const enhancer = compose(middleware, (window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
+
+    // Create store
+    let store = createStore(reducers, enhancer);
+
+`<Provider />` is the higher-order component provided by React Redux that lets you bind Redux to React. We will wrap `<Router />` in `<Provider />` so that route handlers can get access to the store.
+
+
+### Redux Actions
+
+Actions are payloads of information that starts send data from your application to your store. Actions are plain JavaScript objects. Actions must have a type property that indicates the type of action being performed. Types should typically be defined as string constants. It may have a payload property that includes the information.<br/>
+
+Here I used redux-action.
+
+##### * Add redux-actions package in to project
+
+ npm install --save redux-actions
+
+### Redux Reducers
+
+Reducers specify how the application's state changes in response to actions sent to the store. Remember that actions only describe the fact that something happened, but don't describe how the application's state changes.In Redux, all the application state is stored as a single object.The reducer is a pure function that takes the previous state and an action, and returns the next state.<br/>
+
+    (previousState, action) => newState
+
+
+### Redux Store
+
+we defined the actions that represent the facts about “what happened” and the reducers that update the state according to those actions.The Store is the object that brings them together. The store has the following responsibilities:
+
+- Holds application state
+
+- Allows access to state via getState()
+
+- Allows state to be updated via dispatch(action)
+    I used redux-action package. Because of that we can update state using  handleActions(). `handleAction(type, reducer, defaultState)`
+
+- Registers listeners via subscribe(listener)
+
+- Handles unregistering of listeners via the function returned by subscribe(listener)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### * Semantic UI
+
+Semantic is a development framework that helps create beautiful, responsive layouts using human-friendly HTML.<br/>
+
+##### * Add Semantic UI package in to project and add in to the package.json
+    npm install semantic-ui-react --save
+
+##### Grid in Semantic UI
+Grids divide horizontal space into indivisible units called "columns". All columns in a grid must specify their width as proportion of the total available row width.All grid systems chooses an arbitrary column count to allow per row. Semantic's default theme uses 16 columns.<br/>
+
+##### Rows in Semantic UI
+Rows are groups of columns which are aligned horizontally.
+    For more details - https://semantic-ui.com/collections/grid.html <br/>
+
+### * Redux-form
+
+Redux form is the best way to manage form state in Redux.
+
+##### * Add Redux-form package in to project and add in to the package.json
+    npm install redux-form --save
