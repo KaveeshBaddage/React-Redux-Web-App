@@ -86,6 +86,17 @@ In the following I have used those three ways to route
             : <EmptyPage {...props}/>
         )}/>
 
+
+## React Component
+
+React.Component is an abstract base class, so it rarely makes sense to refer to React.Component directly. Instead, you will typically subclass it, and define at least a render() method. <br/>
+
+### The Component Lifecycle
+
+Each component has several “lifecycle methods” that you can override to run code at particular times in the process. Methods prefixed with `will` are called right before something happens, and methods prefixed with `did` are called right after something happens.<br/>
+
+more details - https://reactjs.org/docs/react-component.html 
+
 ### Rendering a Component
 
  Other than DOM tags(ex-`<div>`) we can also use user-defined components to view contents. <br/>
@@ -142,7 +153,7 @@ REdux-Logic is a middleware. Middleware is the suggested way to extend Redux wit
     // Create store
     let store = createStore(reducers, enhancer);
 
-`<Provider />` is the higher-order component provided by React Redux that lets you bind Redux to React. We will wrap `<Router />` in `<Provider />` so that route handlers can get access to the store.
+`<Provider />` is the higher-order component provided by React Redux that lets you bind Redux to React. We will wrap `<Router />` in `<Provider />` so that route handlers can get access to the store.The Provider is a component that comes from our React Redux library. It wraps around our App component. It does two things for us. The first is that it will alert our Redux app when there has been a change in state, and this will re-render our React app.
 
 
 ### Redux Actions
@@ -176,6 +187,43 @@ we defined the actions that represent the facts about “what happened” and th
 - Registers listeners via subscribe(listener)
 
 - Handles unregistering of listeners via the function returned by subscribe(listener)
+
+#### CONNECT() Function
+
+For a component to be connected to the store, i.e. to be able to get data from the store's internal state and to be told to re-render and get new data when that state changes, we will use the connect() function made available to us by React Redux.<br/>
+
+The following shows the connect function breakdown:<br/>
+
+`connect(mapStateToProps, mapDispatchToProps, mergeProps, options)(component);`
+
+There are four parameters within the connect function, with another argument that accepts the imported React component.
+
+ - mapStateToProps
+ - mapDispatchToProps
+ - mergeProps — optional
+ - options — optional
+
+#### mapStateToProps
+
+mapStateToProps() function connect state from the store to corresponding props. This make it possible to access your reducer state objects from within your React components. This function will subscribe to the Redux store and any updates will update props automatically. mapStateToProps needs to return an object, where the key is the new prop name to be used in the React app and the value is the name of the reducer function.<br/>
+
+#### mapDispatchToProps
+
+We can setting up props that hold our action creators inside mapDispatchToProps function.The second thing is binding the action creators to dispatch. Without this binding firing an action creator will do nothing. Now mapDispatchToProps is not the only way of bind dispatch and action creators, there is another way called bindActionCreators.
+
+#### mergeProps
+
+It is an optional parameter and is a function. This function is passed the result of mapStateToProps(), mapDispatchToProps(), and the parent props. With this data available, it is easy to use props inherited from connect’s parent and combine them with an action creator. 
+
+#### options
+
+The options parameter is an object. It is used to customize the behavior of the connect function. The acceptable ‘options’ are the following:<br/>
+
+- pure- Boolean, if true connect() will avoid re-rendering (will not update)
+- areStatesEqual- Compares new store state vs. old*
+- areOwnPropsEqual- Compares new props vs. old*
+- areStatePropsEqual- Compares new mapStateToProps vs. old*
+- areMergedPropsEqual- Compares new mergeProps vs. old*
 
 
 
