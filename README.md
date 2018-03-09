@@ -225,6 +225,9 @@ The options parameter is an object. It is used to customize the behavior of the 
 - areStatePropsEqual- Compares new mapStateToProps vs. old*
 - areMergedPropsEqual- Compares new mergeProps vs. old*
 
+#### withRouter() function
+
+You can get access to the history object’s properties and the closest <Route>'s match via the withRouter higher-order component. withRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
 
 
 
