@@ -4,7 +4,7 @@ import {handleActions} from 'redux-actions';
 const initialState = {
 	username: '',
 	hasError: false,
-	error: {},
+	error: null,
 	resp: { status: 0, message: "" },
 	loading: false,
 	loggedin: false
@@ -12,6 +12,12 @@ const initialState = {
 
 // Reducers from redux-actions
 export default handleActions({
+	[types.LOGIN_QUERY_START]: (state, { payload }) => (
+        { ...state, loading: true, error: false, requestSuccess: false }
+    ),
+    [types.LOGIN_QUERY_END]: (state, { payload }) => (
+        { ...state, loading: false }
+    ),
 	[types.LOGIN]: (state, { payload }) => (
 		{ ...state, username: payload.username, hasError: false, error: {}, loading: true }
 	),
@@ -29,7 +35,7 @@ export default handleActions({
 	),
 
 	[types.LOGIN_CLEAR]: (state, action) => (
-		{ ...state, username: "", hasError: false, resp: {}, loggedin: false }
+		{ ...state, username: "", hasError: false, resp: {}, loggedin: false,error:null }
     ),
     
     [types.LOGOUT]: (state, { payload }) => (
