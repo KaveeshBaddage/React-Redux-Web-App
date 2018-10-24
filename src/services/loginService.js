@@ -14,10 +14,12 @@ const login =  createLogic({
         if (action.payload.username = 'asd' && action.payload.password == '123') {
             localStorage.setItem('token',"token123")
             dispatch(loginActions.loginSuccess("token123"))
+            dispatch(loginActions.queryEnd())
             dispatch(sessionActions.sessionStart())
             console.log("login service is calling")
         } else {
             dispatch(loginActions.loginFailed({ title: "Error!", message: "Invalid username or password." }))
+            dispatch(loginActions.queryEnd())
         }
         done();
         return
@@ -40,6 +42,7 @@ const login =  createLogic({
             //     type: loginTypes.LOGIN_SUCCESS,
             //     payload: response.data
              })
+            .then(() => dispatch(loginActions.queryEnd()))
             .catch(err => {
                 var errorMessage = "Invalid username or password.";
 
