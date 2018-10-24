@@ -1,6 +1,9 @@
 import { createAction } from 'redux-actions'
 
 // Types
+export const LOGIN_QUERY_START = "login/LOGIN_QUERY_START";
+export const LOGIN_QUERY_END = "login/LOGIN_QUERY_END";
+
 export const LOGIN = "login/LOGIN";
 export const LOGIN_FAILED = "login/LOGIN_FAILED"
 export const LOGIN_SUCCESS = "login/LOGIN_SUCCESS"
@@ -12,10 +15,10 @@ export const LOGOUT = "login/LOGOUT"
 
 
 export default {
+  queryStart: createAction(LOGIN_QUERY_START),
+  queryEnd: createAction(LOGIN_QUERY_END),
   doLogin: createAction(LOGIN),
-
   doCancel: createAction(LOGIN_CLEAR),
-
   fieldChanged: createAction(FIELD_CHANGED,
     (k, v) => ({ k, v })
     /*{
