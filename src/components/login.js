@@ -1,137 +1,194 @@
-import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { loginActions } from './../actions';
-
+import React, { Component } from "react";
+import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
+import { loginActions } from "./../actions";
+import { Header, Icon, Card, Message } from "semantic-ui-react";
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { password: null,username:null };
+  }     
 
-    constructor(props) {
-        super(props);
-        this.state = { password: "" };
+  clearPassword() {
+    if (this.state && this.state.password != undefined) {
+      this.setState({ password: "" });
     }
+  }
 
-    renderAlert() {
-        console.log("calling render alert")
-        if (this.props.errorMessage) {
-            return (
-                <div className="alert alert-danger" >
-                    <strong>Ooops!</strong> {this.props.errorMessage}
-                </div>
-            );
-        }
+  handleFormSubmit({ email, password }) {
+    console.log("Credential is ", email, password);
+    this.props.queryStart();
+    this.props.doLogin({ email, password });
+    this.clearPassword();
+  }
+
+  componentDidUpdate() {
+    if (this.props.isAuthenticated) {
+      console.log("Redirect to dashboard");
+      this.props.history.push("/");
     }
+  }
 
-    clearPassword() {
-        this.setState({ password: "" })
+  componentDidMount() {
+    if (this.props.isAuthenticated) {
+      console.log("Redirect to dashboard");
+      this.props.history.push("/");
     }
+  }
 
-    handleFormSubmit({ email, password }) {
-        // var username = this.props.username;
-        //var password = this.state.password;
-        console.log("Credential is ", email, password);
-        this.props.doLogin({ email, password });
-        this.clearPassword()
-    }
+  //Clear form filed data and error message
+  clearForm = () => {
+    this.clearPassword();
+    this.props.reset();
+    this.props.doCancel()
+  };
 
-    componentDidUpdate() {
-        if (this.props.isAuthenticated) {
-            console.log("Redirect to dashboard");
-            this.props.history.push('/')
-        }
-    }
+  //Set password's valus in to local state to manage submit button active state
+  handlePasswordValue = (name,value) => {
+    this.setState({ password: value });
+  } 
 
-    componentDidMount() {
-        if (this.props.isAuthenticated) {
-            console.log("Redirect to dashboard");
-            this.props.history.push('/')
-        }
-    }
+   //Set username's valus in to local state to manage submit button active state
+  handleUsernameValue = (name,value) => {
+    this.setState({ username: value });
+  }
 
+  render() {
+    const {
+      handleSubmit,
+      fields: { password, email },
+      logInError,
+      loading
+    } = this.props;
 
+    //View error message
+    let errorMsg = logInError && (
+      <React.Fragment>
+        <Message error header={logInError.title} content={logInError.message} />
+        <button className="ui fluid large red button" onClick={this.clearForm}>
+          Clear
+        </button>
+      </React.Fragment>
+    );
 
+    //View loading message
+    let loadingMsg = loading && (
+      <Message icon>
+        <Icon name="circle notched" loading />
+        <Message.Content>
+          <Message.Header>Just one second</Message.Header>
+          We are authenticating user...
+        </Message.Content>
+      </Message>
+    );
 
-    render() {
-        const { handleSubmit, fields: { password, email } } = this.props;
-        return (
-            <React.Fragment>
-                {/* <div className="container-fluid" style={{ backgroundImage: "url('/assets/images/background.jpg')", height: "-webkit-fill-available" }}>
-
-                    <div className="card" style={{ width: "500px", margin: "auto", padding: "20px", height: "400px", backgroundColor: "#2b2f37" }}>
-                        <div>
-                            <p style={{ textAlign: "center", fontSize: "60px" }}>Sign In</p>
-                        </div>
-                        <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-                            <fieldset className="form-group">
-                                <label>Email</label>
-                                <Field {...email} component="input" name="email" type="text" className="form-control" id="InputEmail" placeholder="Enter Email" />
-                                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                            </fieldset>
-
-                            <fieldset className="form-group">
-                                <label>Password</label>
-                                <Field {...password} name="password" type="password" className="form-control" component="input" id="InputPassword1" placeholder="Password" />
-                            </fieldset>
-                
-                            <br />
-                            <button action="submit" className="btn btn-primary">Sign In</button>
-                        </form>
-
+    return (
+      <React.Fragment>
+        <div
+          className="ui middle aligned center aligned grid container-fluid"
+          style={{
+            background: "url('/assets/images/b3.jpg')",
+            backgroundSize: "100%",
+            height: "-webkit-fill-available",
+            width: "100%",
+            marginLeft: 0,
+            marginTop: 1
+          }}
+        >
+          <div
+            className="ui middle aligned center aligned grid"
+            style={{ marginTop: 0 }}
+          >
+            <div className="column" style={{ width: 500 }}>
+              <Card fluid color="green" raised>
+                <Card.Header>
+                  <Header
+                    as="h2"
+                    block
+                    style={{ width: "470px", color: "green" }}
+                    icon
+                    textAlign="center"
+                  >
+                    <Icon name="users" circular />
+                    Sign In to XYZ
+                  </Header>
+                </Card.Header>
+              </Card>
+              <form
+                className="ui large form"
+                onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
+              >
+                <div className="ui stacked secondary  segment">
+                  <div className="field">
+                    <div className="ui left icon input">
+                      <i className="user icon" />
+                      <Field
+                        type="text"
+                        {...email}
+                        component="input"
+                        name="email"
+                        className="form-control"
+                        id="InputEmail"
+                        placeholder="Enter Email"
+                        onChange={this.handleUsernameValue}
+                      />
                     </div>
-                </div> */}
-
-                <div className="ui middle aligned center aligned grid" style={{ marginTop: 100 }} >
-                    <div className="column" style={{ width: 500 }} >
-                        <h1 className="ui image header">
-                            <div className="content">
-                                Sign In
-                              </div>
-                        </h1>
-                        <form className="ui large form" onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-                            <div className="ui stacked secondary  segment">
-                                <div className="field">
-                                    <div className="ui left icon input">
-                                        <i className="user icon"></i>
-                                        <Field type="text"  {...email} component="input" name="email" type="text" className="form-control" id="InputEmail" placeholder="Enter Email" />
-                                    </div>
-                                </div>
-                                <div className="field">
-                                    <div className="ui left icon input">
-                                        <i className="lock icon"></i>
-                                        <Field type="text"  {...password} name="password" type="password" className="form-control" component="input" id="InputPassword1" placeholder="Enter Password" />
-                                    </div>
-                                </div>
-                                <button class="ui fluid large teal submit button" action="submit">Sign In</button>
-                            </div>
-
-                        </form>
-                        <div class="ui message">
-                            New User? <a href="#/register">Register</a>
-                        </div>
-
+                  </div>
+                  <div className="field">
+                    <div className="ui left icon input">
+                      <i className="lock icon" />
+                      <Field
+                        type="text"
+                        {...password}
+                        name="password"
+                        type="password"
+                        className="form-control"
+                        component="input"
+                        id="InputPassword1"
+                        placeholder="Enter Password"
+                        onChange={this.handlePasswordValue}
+                      />
                     </div>
-
+                  </div>
+                  <button
+                    className="ui fluid large green submit button"
+                    action="submit"
+                    disabled={!this.state.password || !this.state.username}
+                  >
+                    Sign In
+                  </button>
+                  <br />
                 </div>
-            </React.Fragment>
-        );
-
-    }
-
-
+              </form>
+              <div className="ui message">
+                New User? <a href="#/register">Register</a>
+              </div>
+              {loadingMsg}
+              {errorMsg}
+            </div>
+          </div>
+        </div>
+      </React.Fragment>
+    );
+  }
 }
-
 
 Login = reduxForm({
-    form: 'signin',
-    fields: ['email', 'password']
+  form: "signin",
+  fields: ["email", "password"]
 })(Login);
 
-
 function mapStateToProps(state) {
-    return {
-        isAuthenticated: state.session.isAuthenticated
-    };
+  return {
+    isAuthenticated: state.session.isAuthenticated,
+    hasError: state.login.hasError,
+    logInError: state.login.error,
+    loading: state.login.loading
+  };
 }
 
-export default connect(mapStateToProps, loginActions)(Login);
+export default connect(
+  mapStateToProps,
+  loginActions
+)(Login);
