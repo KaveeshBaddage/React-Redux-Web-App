@@ -44,15 +44,13 @@ class Login extends Component {
     this.props.doCancel()
   };
 
-  //Set password's valus in to local state to manage submit button active state
-  handlePasswordValue = (name,value) => {
-    this.setState({ password: value });
-  } 
 
-   //Set username's valus in to local state to manage submit button active state
-  handleUsernameValue = (name,value) => {
-    this.setState({ username: value });
-  }
+  //Set password and username valus in to local state to manage submit button active state
+  handleChange = event => {
+    this.setState({
+    [event.target.id]: event.target.value
+    });
+    }
 
   render() {
     const {
@@ -129,9 +127,9 @@ class Login extends Component {
                         component="input"
                         name="email"
                         className="form-control"
-                        id="InputEmail"
+                        id="username"
                         placeholder="Enter Email"
-                        onChange={this.handleUsernameValue}
+                        onChange={this.handleChange}
                       />
                     </div>
                   </div>
@@ -145,9 +143,9 @@ class Login extends Component {
                         type="password"
                         className="form-control"
                         component="input"
-                        id="InputPassword1"
+                        id="password"
                         placeholder="Enter Password"
-                        onChange={this.handlePasswordValue}
+                        onChange={this.handleChange}
                       />
                     </div>
                   </div>
